@@ -1,0 +1,21 @@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <h2>resutaat</h2>
+    <p>
+        <ul>
+        <%boeken.forEach(boek => { %> 
+            <li> [<%= boek.qrcode %>] <%= boek.titel %> van <%= boek.naam %> <a href='#' onclick="createQR('<%= boek.qrcode %>')">showQR</a></li>
+        <%})%>
+    </ul>
+    <div id='qrcode'></div>
+    <script>
+        function createQR(code) {
+
+            // const codeSite = 'https://vandebib.herokuapp.com/gebruik/' + code
+            const codeSite = 'http://localhost:3000/gebruik/' + code
+            
+            document.getElementById("qrcode").innerHTML = ""
+           new QRCode(document.getElementById("qrcode"), codeSite)
+        }
+    </script>
+
+    </p>

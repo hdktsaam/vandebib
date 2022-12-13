@@ -1,0 +1,9 @@
+    <h1>Je zocht naar: <%= data.boekid %></h1>
+    <h2>resutaat</h2>
+    <p>
+        <ul>
+        <%data.zoekRes.forEach(boek => { %> 
+            <li><%= boek.titel %> van <%= boek.naam %></li>
+        <%})%>
+    </ul>
+    </p>

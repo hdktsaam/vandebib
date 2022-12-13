@@ -1,0 +1,81 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
+<div class="maakklas">
+    <h1>Maak een afdeling aan</h1>
+    <form action="/vandebib/maakafdeling" method="post">
+        <label for="klasOmschrijving">Code</label>
+        <input type="text" id="Code" name="Code">
+        <label for="klasOmschrijving">omschrijving</label>
+        <input type="text" id="Omschrijving" name="Omschrijving">
+        <button type="submit">verzenden</button>
+    </form>
+    <h1>Update een afdeling aan</h1>
+    <form action="/vandebib/updateafdeling" method="post">
+        <label for="Code">Code</label>
+        <input type="text" id="Code" name="Code">
+        <label for="Omschrijving">omschrijving</label>
+        <input type="text" id="Omschrijving" name="Omschrijving">
+        <select id="ID" name="ID">
+            <% afdelingen.forEach(afdeling => { %> 
+                <option value="<%= afdeling.idafdeling %>"><%= afdeling.omschrijvingKort %> - <%= afdeling.omschrijvingLang %></option>
+            <%})%>
+        </select>
+        <button type="submit">verzenden</button>
+    </form>
+    <h1>Maak een plaats aan</h1>
+    <form action="/vandebib/maakPlaats" method="post">
+        <label for="kort">omschrijving kort</label>
+        <input type="text" id="kort" name="kort">
+        <label for="lang">omschrijving lang</label>
+        <input type="text" id="lang" name="lang">
+        <label for="klas">afdeling</label>
+        <select id="afdeling" name="afdeling">
+            <% afdelingen.forEach(afdeling => { %> 
+                <option value="<%= afdeling.idafdeling %>"><%= afdeling.omschrijvingKort %></option>
+            <%})%>
+        </select>
+        <button type="submit">verzenden</button>
+    </form>
+<hr>
+    <h1> maak een auteur aan</h1>
+    <form action="/vandebib/maakAuteur" method="post">
+        <label for="naamAuteur">naam auteur</label>
+        <!-- id ==> voor label / name ==> nodejs -->
+        <input type="text" id="naamAuteur" name="naamAuteur">
+        <button type="submit">verzenden</button>
+    </form>
+    <h1> maak een uitgeverij aan</h1>
+    <form action="/vandebib/maakUitgeverij" method="post">
+        <label for="OmschrijvingKort">Kort</label>
+        <!-- id ==> voor label / name ==> nodejs -->
+        <input type="text" id="OmschrijvingKort" name="OmschrijvingKort">
+        <label for="OmschrijvingLang">Kort</label>
+        <!-- id ==> voor label / name ==> nodejs -->
+        <input type="text" id="OmschrijvingLang" name="OmschrijvingLang">
+        <button type="submit">verzenden</button>
+    </form>
+
+    <h1> maak een boek aan</h1>
+    <form action="/vandebib/maakboek" method="post">
+        <label for="titel">titel</label>
+        <input type="text" id="titel" name="titel">
+        <label for="idauteur">auteur</label>
+        <select id="idauteur" name="idauteur">
+            <% auteurs.forEach(auteur => { %> 
+                <option value="<%= auteur.idauteur %>"><%= auteur.naam %></option>
+            <%})%>
+        </select>
+        <label for="iduitgeverij">uitgeverij</label>
+        <select id="iduitgeverij" name="iduitgeverij">
+            <% uitgeverijen.forEach(uitgeverij => { %> 
+                <option value="<%= uitgeverij.iduitgeverij %>"><%= uitgeverij.omschrijvingKort %></option>
+            <%})%>
+        </select>
+        <label for="url">URL</label>
+        <input type="text" id="url" name="url">
+        <button type="submit">verzenden</button>
+    </form>
+
+    
+</div>
