@@ -12,7 +12,6 @@ const boekplaats = require('../db/boekplaats')
 
 router.route('/')
     .get(boekController.getBoeken)
-    .post(boekController.ontleenBoek)
 
 router.get('/:qrcode',async(req,res) => {
     const findboek = await boek.getBoekByQR(req.params.qrcode)
@@ -30,6 +29,11 @@ router.get('/:qrcode',async(req,res) => {
     }
     
     res.render('gbrLanding',{findboek,plaatsen,pl,achterliggendeInfo})
+})
+
+router.post('/leenboek', async(req,res) => {
+    boekplaats.addBoekbyPlaats({idboek: req.body.idboek, idplaats : req.body.idplaats})
+    res.render('index')
 })
 
 module.exports = router
