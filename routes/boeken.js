@@ -18,8 +18,9 @@ router.route('/:qrcode')
     .get(boekController.getBoekByQR)
 
 router.post('/leenboek', async(req,res) => {
-    boekplaats.addBoekbyPlaats({idboek: req.body.idboek, idplaats : req.body.idplaats})
-    res.render('index')
+    res.send('hallo')
+    // boekplaats.addBoekbyPlaats({idboek: req.body.idboek, idplaats : req.body.idplaats})
+    // res.render('index')
 })
 
 module.exports = router
