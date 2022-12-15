@@ -27,10 +27,9 @@ const getBoekByQR = async(req,res) => {
 }
 
 const ontleenBoek = async(req,res) => {
-    res.send("hier")
     // console.log(req.body.idboek + ' ' + req.body.idplaats);
-    // boekplaats.addBoekbyPlaats({idboek: req.body.idboek, idplaats : req.body.idplaats})
-    // res.render('index')
+    boekplaats.addBoekbyPlaats({idboek: req.body.idboek, idplaats : req.body.idplaats})
+    res.send('gelukt')
 }
 
 module.exports = {
