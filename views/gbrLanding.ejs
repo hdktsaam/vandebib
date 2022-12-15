@@ -21,7 +21,7 @@
 
   <div class="plaatsen">
     <h1>Ik wil het boek op deze plaats <%= pl.idplaats %></h1>
-    <form action="/boeken/leenboek" method="post">
+    <form action="/boeken" method="post">
       <input type="hidden" name="idboek" value="<%= findboek.idboek %>" />
       <select id="idplaats" name="idplaats">
         <% plaatsen.forEach(plaats => { %>
