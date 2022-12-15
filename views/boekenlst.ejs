@@ -10,8 +10,8 @@
     <script>
         function createQR(code) {
 
-            // const codeSite = 'https://vandebib.herokuapp.com/gebruik/' + code
-            const codeSite = 'http://localhost:3000/gebruik/' + code
+            const codeSite = 'https://vandebib.onerender.com/gebruik/' + code
+            // const codeSite = 'http://localhost:3000/gebruik/' + code
             
             document.getElementById("qrcode").innerHTML = ""
            new QRCode(document.getElementById("qrcode"), codeSite)
