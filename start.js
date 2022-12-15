@@ -22,16 +22,12 @@ app.set('view engine','ejs')
 app.use('/', express.static('public'))
 // app.use('/public', express.static(path.join(__dirname,'public')))
 
-app.get('/', (req, res) => {
-    // res.sendFile(path.join(__dirname,'static','index.html'))
-    res.render('index')
-})
-
 const setup = async () => {
+    // kijk eerst of er een updat is voor de databank alvorens alles op te starten
     const db = await dbPromise
     await db.migrate()
     app.listen(port, () => {
-        console.log(`App listening at http://localhost:${port}`)
+        console.log(`App listening at port: ${port}`)
     })
 }
 

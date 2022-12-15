@@ -1,17 +1,18 @@
 const express = require('express')
 const router = express.Router();
-const sqlite3 = require('sqlite3')
-const {open} = require('sqlite')
+
+// import controller
+const boekController = require('../controller/boek')
+
 const boek = require('../db/boek')
 const afdeling = require('../db/afdeling')
 const plaats = require('../db/plaats')
 const boekplaats = require('../db/boekplaats')
 
 
-router.get('/',async(req,res) => {
-    const resultaat = await boek.allboeken()
-    res.send(resultaat)
-})
+router.route('/')
+    .get(boekController.getBoeken)
+    .post(boekController.ontleenBoek)
 
 router.get('/:qrcode',async(req,res) => {
     const findboek = await boek.getBoekByQR(req.params.qrcode)
@@ -27,15 +28,8 @@ router.get('/:qrcode',async(req,res) => {
         infplaats: plaatsinfo[0],
         infafdeling: afdelinginfo[0]
     }
-
     
     res.render('gbrLanding',{findboek,plaatsen,pl,achterliggendeInfo})
-})
-
-router.post('/leenboek', async(req,res) => {
-    console.log(req.body.idboek,  req.body.idplaats);
-    boekplaats.addBoekbyPlaats({idboek: req.body.idboek, idplaats : req.body.idplaats})
-    res.render('index')
 })
 
 module.exports = router
